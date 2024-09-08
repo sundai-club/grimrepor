@@ -119,7 +119,7 @@ if __name__ == "__main__":
         results = check_local_requirements(requirements_files)
     else:
         # Check GitHub repositories
-        df = pd.read_csv("paper_repo_Info.csv")
+        df = pd.read_csv("paper_repo_info.csv")
         repos = df["repo_url"].tolist()
         results = check_repos(repos)
 
