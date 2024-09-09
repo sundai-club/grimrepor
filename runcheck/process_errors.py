@@ -176,7 +176,7 @@ def process_repository(repo_url):
         gpt_output = check_and_update_requirements(updated_requirements_str)
 
         # Commit and push the updated requirements file to the repository
-        commit_and_push(repo, file_path, gpt_output)
+        # commit_and_push(repo, file_path, gpt_output)
 
         return gpt_output
 
