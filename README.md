@@ -51,7 +51,6 @@ If you appreciate our work and want to support our mission, consider tipping us 
 
 ### Let's Keep Great Code Alive, Together!
 
-© 2024 AI Version Control. All rights reserved.
 
 |------------------|-------------|-------------------------------------------|
 
