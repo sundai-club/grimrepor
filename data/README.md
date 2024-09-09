@@ -1,6 +1,6 @@
 Offset: 2442
 
-Papers w/ Code Full dataset:
+Papers w/ Code Full dataset (download here: https://paperswithcode.com/about):
 links-between-papers-and-code.json
 
 -> Papers w/ Code Full dataset + github repo info:
