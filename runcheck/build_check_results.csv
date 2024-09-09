@@ -1,0 +1,1042 @@
+file_or_repo,status
+https://github.com/paul-buerkner/psis-non-factorized-paper,No requirements found
+https://github.com/trangvu/ape-npi,No requirements found
+https://github.com/bprabhakar/text-to-image,Success
+https://github.com/facebookresearch/InferSent,No requirements found
+https://github.com/casacore/casarest,No requirements found
+https://github.com/yingutk/NL-MAT,No requirements found
+https://github.com/xianggebenben/TSSM,No requirements found
+https://github.com/enalisnick/stick-breaking_dgms,No requirements found
+https://github.com/Maymaher/StackGANv2,No matching distribution found
+https://github.com/boyangumn/DCN,No requirements found
+https://github.com/quantumprotocolzoo/protocols,No requirements found
+https://github.com/Glorf/recipenlg,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [15 lines of output]
+      The 'sklearn' PyPI package is deprecated, use 'scikit-learn'
+      rather than 'sklearn' for pip commands.
+      
+      Here is how to fix this error in the main use cases:
+      - use 'pip install scikit-learn' rather than 'pip install sklearn'
+      - replace 'sklearn' by 'scikit-learn' in your pip requirements files
+        (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)
+      - if the 'sklearn' package is used by one of your dependencies,
+        it would be great if you take some time to track which package uses
+        'sklearn' instead of 'scikit-learn' and report it to their issue tracker
+      - as a last resort, set the environment variable
+        SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error
+      
+      More information is available at
+      https://github.com/scikit-learn/sklearn-pypi-package
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/LIBOL/ODL,No requirements found
+https://github.com/leondgarse/keras_cv_attention_models/tree/main/keras_cv_attention_models/mobilenetv3_family,No requirements found
+https://github.com/geekJZY/arcticnet,No requirements found
+https://github.com/Yochengliu/MLIC-KD-WSD,No requirements found
+https://github.com/HoganZhang/few-shot-gnn,No requirements found
+https://github.com/syahdeini/gan,No requirements found
+https://github.com/Neo-The1/ThinkingTicTacToe,No requirements found
+https://github.com/trongnghia00/darknet,No requirements found
+https://github.com/brandonrobertz/AcademicUrlTitles,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [22 lines of output]
+      Traceback (most recent call last):
+        File ""/tmp/tmp13zb_ipj/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp13zb_ipj/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp13zb_ipj/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 118, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-voa_l82_/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 332, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-voa_l82_/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 302, in _get_build_requires
+          self.run_setup()
+        File ""/tmp/pip-build-env-voa_l82_/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-voa_l82_/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 22
+          print ""Unit tests have failed!""
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/co-design-hybrid/co-design-hybrid,No requirements found
+https://github.com/arberzela/EfficientNAS,No requirements found
+https://github.com/rickyHong/GANTTS-update-repl,No requirements found
+https://github.com/0/itensor-linear-rotors,No requirements found
+https://github.com/Nhat-Thanh/ESPCN-Pytorch,No requirements found
+https://github.com/YGUO29/FANTASIA-CaImAn,No requirements found
+https://github.com/ridakadri14/AspectBasedSentimentAnalysis,No requirements found
+https://github.com/One-sixth/CVAE-GAN_tensorlayer,No requirements found
+https://github.com/takyamamoto/FirstExplicitMethod-HDM,No requirements found
+https://github.com/maxime1310/fuzzy_labeling_scRNA,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [30 lines of output]
+      Running from numpy source directory.
+      <string>:369: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      /tmp/pip-install-kbo8f3sg/numpy_c693408072294360a91c5c2eb4ccd4a5/numpy/distutils/misc_util.py:464: SyntaxWarning: ""is"" with a literal. Did you mean ""==""?
+        return is_string(s) and ('*' in s or '?' is s)
+      Traceback (most recent call last):
+        File ""/tmp/tmp9w1czmdx/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp9w1czmdx/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp9w1czmdx/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-rmwg1yle/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-rmwg1yle/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-rmwg1yle/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 394, in <module>
+        File ""<string>"", line 373, in setup_package
+        File ""/tmp/pip-install-kbo8f3sg/numpy_c693408072294360a91c5c2eb4ccd4a5/numpy/distutils/__init__.py"", line 8, in <module>
+          from . import ccompiler
+        File ""/tmp/pip-install-kbo8f3sg/numpy_c693408072294360a91c5c2eb4ccd4a5/numpy/distutils/ccompiler.py"", line 17, in <module>
+          from numpy.distutils import log
+        File ""/tmp/pip-install-kbo8f3sg/numpy_c693408072294360a91c5c2eb4ccd4a5/numpy/distutils/log.py"", line 13, in <module>
+          from numpy.distutils.misc_util import (red_text, default_text, cyan_text,
+        File ""/tmp/pip-install-kbo8f3sg/numpy_c693408072294360a91c5c2eb4ccd4a5/numpy/distutils/misc_util.py"", line 15, in <module>
+          from distutils.msvccompiler import get_build_architecture
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/danielholanda/LeFlow,No requirements found
+https://github.com/earlbellinger/thesis,No requirements found
+https://github.com/chongkewu/PESC-HPC,No requirements found
+https://github.com/Tencent/tencent-ml-images,No requirements found
+https://github.com/Jungjaewon/Visual-Relationship-Detection,No requirements found
+https://github.com/dare0021/MemN2N_Bench,No requirements found
+https://github.com/RobotLocomotion/pytorch-dense-correspondence,No requirements found
+https://github.com/lorenzobrusco/ECGNeuralNetwork,Success
+https://github.com/tbuikr/3D_DenseSeg,No requirements found
+https://github.com/keelm/SeCo-MLC,No requirements found
+https://github.com/andgoldschmidt/biDMD-for-quantum,No requirements found
+https://github.com/thesps/conifer,No requirements found
+https://github.com/Breakend/TemporalYolo,No requirements found
+https://github.com/Soumyabrata/color-channels,No requirements found
+https://github.com/tomgoter/nlp_finalproject,No requirements found
+https://github.com/kmtam/covid19_data,No requirements found
+https://github.com/wswu/trabina,No requirements found
+https://github.com/paramitamirza/CATENA,No requirements found
+https://github.com/xmu-xiaoma666/External-Attention-pytorch/blob/master/attention/PolarizedSelfAttention.py,No requirements found
+https://github.com/burcu-can/TreeStructuredDP,No requirements found
+https://github.com/aqeel13932/APES,No requirements found
+https://github.com/MindSpore-paper-code-3/code7/tree/main/Focus-DETR,No requirements found
+https://github.com/gmarceaucaron/natural-langevin-dynamics-for-neural-networks,No requirements found
+https://github.com/racerandom/temporalorder,No requirements found
+https://github.com/shenjianbing/videoseg15,No requirements found
+https://github.com/liamcli/darts,No requirements found
+https://github.com/antonFJohansson/Bayesian-Learning-of-Neural-Network-Architectures,No requirements found
+https://github.com/manavkulshrestha/imgprov,No requirements found
+https://github.com/tianyishan/Blind_Deconvolution,No requirements found
+https://github.com/keisuke6616/Distance-based-classifier-by-data-transformation-for-high-dimension-strongly-spiked-eigenvalue-mode,No requirements found
+https://github.com/hitvoice/DrQA,Success
+https://github.com/leehomyc/Faster-High-Res-Neural-Inpainting,No requirements found
+https://github.com/XiaohangZhan/cdp,No requirements found
+https://github.com/tlynn747/IrishTwitterPOS,No requirements found
+https://github.com/marcellacornia/mlnet,No requirements found
+https://github.com/quantummind/qaml-z,No requirements found
+https://github.com/Dalkio/RL_rubiks,No requirements found
+https://github.com/chihyaoma/Activity-Recognition-with-CNN-and-RNN,No requirements found
+https://github.com/Vicky-Wil/topic-NMT,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [15 lines of output]
+      The 'sklearn' PyPI package is deprecated, use 'scikit-learn'
+      rather than 'sklearn' for pip commands.
+      
+      Here is how to fix this error in the main use cases:
+      - use 'pip install scikit-learn' rather than 'pip install sklearn'
+      - replace 'sklearn' by 'scikit-learn' in your pip requirements files
+        (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)
+      - if the 'sklearn' package is used by one of your dependencies,
+        it would be great if you take some time to track which package uses
+        'sklearn' instead of 'scikit-learn' and report it to their issue tracker
+      - as a last resort, set the environment variable
+        SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error
+      
+      More information is available at
+      https://github.com/scikit-learn/sklearn-pypi-package
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/user525/mfgpc,No requirements found
+https://github.com/YuvalBahat/Confidence_From_Invariance,No requirements found
+https://github.com/camponsah/Penalty-Method-Obliquely-Reflected-Diffusions,No requirements found
+https://github.com/TatsuyaShirakawa/poincare-embedding,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [28 lines of output]
+      Running from numpy source directory.
+      <string>:390: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      /tmp/pip-install-_cxwlwtb/numpy_ee5c3fcb9e11423ea97d19b6aa334aa7/numpy/distutils/misc_util.py:476: SyntaxWarning: ""is"" with a literal. Did you mean ""==""?
+        return is_string(s) and ('*' in s or '?' is s)
+      Traceback (most recent call last):
+        File ""/tmp/tmp4dzb7dlu/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp4dzb7dlu/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp4dzb7dlu/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-hlsnfxwk/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-hlsnfxwk/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-hlsnfxwk/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 415, in <module>
+        File ""<string>"", line 394, in setup_package
+        File ""/tmp/pip-install-_cxwlwtb/numpy_ee5c3fcb9e11423ea97d19b6aa334aa7/numpy/distutils/core.py"", line 26, in <module>
+          from numpy.distutils.command import config, config_compiler, \
+        File ""/tmp/pip-install-_cxwlwtb/numpy_ee5c3fcb9e11423ea97d19b6aa334aa7/numpy/distutils/command/config.py"", line 19, in <module>
+          from numpy.distutils.mingw32ccompiler import generate_manifest
+        File ""/tmp/pip-install-_cxwlwtb/numpy_ee5c3fcb9e11423ea97d19b6aa334aa7/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+          from distutils.msvccompiler import get_build_version as get_build_msvc_version
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/bobbyhaliwela/AutoRcCar-Behavioral-Clonning,No requirements found
+https://github.com/unsky/focal-loss,No requirements found
+https://github.com/benevolentAI/guacamol_baselines,"Failed: ERROR: Invalid requirement: 'dockers/requirements.txt' (from line 1 of /tmp/tmpr5ukknkz)
+Hint: It looks like a path. File 'dockers/requirements.txt' does not exist.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/Babylonpartners/fuzzymax,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [30 lines of output]
+      Running from numpy source directory.
+      <string>:378: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      /tmp/pip-install-uyv1fawz/numpy_2c156f6d9fbd4e3382f8d111018e1a4d/numpy/distutils/misc_util.py:477: SyntaxWarning: ""is"" with a literal. Did you mean ""==""?
+        return is_string(s) and ('*' in s or '?' is s)
+      Traceback (most recent call last):
+        File ""/tmp/tmp98xebw4n/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp98xebw4n/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp98xebw4n/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-dnq818m9/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-dnq818m9/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-dnq818m9/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 403, in <module>
+        File ""<string>"", line 382, in setup_package
+        File ""/tmp/pip-install-uyv1fawz/numpy_2c156f6d9fbd4e3382f8d111018e1a4d/numpy/distutils/__init__.py"", line 8, in <module>
+          from . import ccompiler
+        File ""/tmp/pip-install-uyv1fawz/numpy_2c156f6d9fbd4e3382f8d111018e1a4d/numpy/distutils/ccompiler.py"", line 17, in <module>
+          from numpy.distutils import log
+        File ""/tmp/pip-install-uyv1fawz/numpy_2c156f6d9fbd4e3382f8d111018e1a4d/numpy/distutils/log.py"", line 13, in <module>
+          from numpy.distutils.misc_util import (red_text, default_text, cyan_text,
+        File ""/tmp/pip-install-uyv1fawz/numpy_2c156f6d9fbd4e3382f8d111018e1a4d/numpy/distutils/misc_util.py"", line 16, in <module>
+          from distutils.msvccompiler import get_build_architecture
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/wrld/visual_navigation_pose_estimation,"Failed: ERROR: Invalid requirement: '_libgcc_mutex=0.1=main' (from line 1 of /tmp/tmpxf4_xg0u)
+Hint: = is not a valid operator. Did you mean == ?
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/facebookresearch/higher,"Failed: ERROR: torch-1.2.0+cpu-cp37-cp37m-manylinux1_x86_64.whl is not a supported wheel on this platform.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/rakshithShetty/captionGAN,No requirements found
+https://github.com/simonjisu/NMT,No requirements found
+https://github.com/ZiningZhu/feng-hirst-rst-parser,No requirements found
+https://github.com/qiuwenhui/StanfordDoggoProject,No requirements found
+https://github.com/TEAMLAB-Lecture/deep_nlp_101,No requirements found
+https://github.com/txhaug/nisq-sdp,No requirements found
+https://github.com/mdabbah/COOD_benchmarking,Success
+https://github.com/sshaar/clef2020-factchecking-task2,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [26 lines of output]
+      Running from numpy source directory.
+      <string>:461: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      Traceback (most recent call last):
+        File ""/tmp/tmphsjg5677/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmphsjg5677/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmphsjg5677/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-gksf45yr/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-gksf45yr/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-gksf45yr/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 488, in <module>
+        File ""<string>"", line 465, in setup_package
+        File ""/tmp/pip-install-yv6dzspc/numpy_9e5d5e676d4242f097d727e1a4f3e341/numpy/distutils/core.py"", line 26, in <module>
+          from numpy.distutils.command import config, config_compiler, \
+        File ""/tmp/pip-install-yv6dzspc/numpy_9e5d5e676d4242f097d727e1a4f3e341/numpy/distutils/command/config.py"", line 20, in <module>
+          from numpy.distutils.mingw32ccompiler import generate_manifest
+        File ""/tmp/pip-install-yv6dzspc/numpy_9e5d5e676d4242f097d727e1a4f3e341/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+          from distutils.msvccompiler import get_build_version as get_build_msvc_version
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/Heumi/BEGAN-tensorflow,No requirements found
+https://github.com/mrkieumy/task-conditioned,No requirements found
+https://github.com/bochencaltech/scotopic,No requirements found
+https://github.com/cedricdeboom/CharRNN,No requirements found
+https://github.com/learn-co-curriculum/dsc-graph-connectivity-community-detection,No requirements found
+https://github.com/kadarakos/chaoticgls,No requirements found
+https://github.com/CP-Unibo/sunny-cp,No requirements found
+https://github.com/ShinKyuY/Understanding-Black-box-Predictions-via-Influence-Functions-tutorial-MNIST-7-vs-1-Classification,No requirements found
+https://github.com/DFKI-NLP/TRE,No matching distribution found
+https://github.com/bazenkov/MultiCPG,No requirements found
+https://github.com/douglase/poppy_benchmarking,No requirements found
+https://github.com/VCL3D/SphericalViewSynthesis,No requirements found
+https://github.com/hirokatsukataoka16/FractalDB-Pretrained-ResNet-PyTorch,No requirements found
+https://github.com/anonmaths/tumour_sde_model,No requirements found
+https://github.com/dennybritz/cnn-text-classification-tf,No requirements found
+https://github.com/qilei123/fpn_crop,No matching distribution found
+https://github.com/prajjwal1/adaptive_transformer,No matching distribution found
+https://github.com/jingxixu/pddlstream,No requirements found
+https://github.com/awstlaur/negsnel,No requirements found
+https://github.com/invenia/OPFSampler.jl,No requirements found
+https://github.com/coin-dataset/annotations,No requirements found
+https://github.com/ken90242/js-segment-annotator,No requirements found
+https://github.com/HaijunMa/GAN-Getting-started-learning,No requirements found
+https://github.com/ronggong/jingjuSingingPhraseMatching,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [28 lines of output]
+      Running from numpy source directory.
+      <string>:366: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      /tmp/pip-install-m07kaoxx/numpy_b0502a1add2e4d49a2213272c3aa73ef/numpy/distutils/misc_util.py:453: SyntaxWarning: ""is"" with a literal. Did you mean ""==""?
+        return is_string(s) and ('*' in s or '?' is s)
+      Traceback (most recent call last):
+        File ""/tmp/tmpworr1zun/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmpworr1zun/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmpworr1zun/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-o6t0r5l0/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-o6t0r5l0/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-o6t0r5l0/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 391, in <module>
+        File ""<string>"", line 370, in setup_package
+        File ""/tmp/pip-install-m07kaoxx/numpy_b0502a1add2e4d49a2213272c3aa73ef/numpy/distutils/core.py"", line 26, in <module>
+          from numpy.distutils.command import config, config_compiler, \
+        File ""/tmp/pip-install-m07kaoxx/numpy_b0502a1add2e4d49a2213272c3aa73ef/numpy/distutils/command/config.py"", line 18, in <module>
+          from numpy.distutils.mingw32ccompiler import generate_manifest
+        File ""/tmp/pip-install-m07kaoxx/numpy_b0502a1add2e4d49a2213272c3aa73ef/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+          from distutils.msvccompiler import get_build_version as get_build_msvc_version
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/TTMRonald/MobileNet_Zoo,No requirements found
+https://github.com/koshian2/affinity-loss,No requirements found
+https://github.com/impredicative/irc-url-title-bot,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [38 lines of output]
+      /tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools_scm/git.py:312: UserWarning: git archive did not support describe output
+        warnings.warn(""git archive did not support describe output"")
+      WARNING setuptools_scm.pyproject_reading toml section missing 'pyproject.toml does not contain a tool.setuptools_scm section'
+      Traceback (most recent call last):
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools_scm/_integration/pyproject_reading.py"", line 36, in read_pyproject
+          section = defn.get(""tool"", {})[tool_name]
+                    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+      KeyError: 'setuptools_scm'
+      Traceback (most recent call last):
+        File ""/tmp/tmpwmkfjpp7/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmpwmkfjpp7/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmpwmkfjpp7/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 66, in <module>
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/__init__.py"", line 117, in setup
+          return distutils.core.setup(**attrs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/_distutils/core.py"", line 158, in setup
+          dist.parse_config_files()
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/dist.py"", line 608, in parse_config_files
+          pyprojecttoml.apply_configuration(self, filename, ignore_option_errors)
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py"", line 71, in apply_configuration
+          config = read_configuration(filepath, True, ignore_option_errors, dist)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py"", line 139, in read_configuration
+          validate(subset, filepath)
+        File ""/tmp/pip-build-env-bg0ywi6b/overlay/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py"", line 60, in validate
+          raise ValueError(f""{error}\n{summary}"") from None
+      ValueError: invalid pyproject.toml config: `project`.
+      configuration error: `project` must contain ['name'] properties
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/kevinroccapriore/Predictability,No requirements found
+https://github.com/kornia/kornia,No requirements found
+https://github.com/xuehangzheng/PWLS-ULTRA-for-Low-Dose-3D-CT-Image-Reconstruction,No requirements found
+https://github.com/kstawiski/OmicApp,No requirements found
+https://github.com/takase/control-length,No requirements found
+https://github.com/sfu-gruvi-3dv/Self-Supervised-Human-Depth,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [26 lines of output]
+      Traceback (most recent call last):
+        File ""<string>"", line 9, in <module>
+      ModuleNotFoundError: No module named 'pip'
+      
+      During handling of the above exception, another exception occurred:
+      
+      Traceback (most recent call last):
+        File ""/tmp/tmpar6bn9l0/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmpar6bn9l0/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmpar6bn9l0/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 118, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-r9hyzmrz/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 332, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-r9hyzmrz/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 302, in _get_build_requires
+          self.run_setup()
+        File ""/tmp/pip-build-env-r9hyzmrz/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-r9hyzmrz/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 11, in <module>
+      ModuleNotFoundError: No module named 'pip'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/alishdipani/Neural-Style-Transfer-Audio,No requirements found
+https://github.com/BroCoLySTyLe/SQLovaReview,No requirements found
+https://github.com/mari-linhares/tensorflow-maml,No requirements found
+https://github.com/seungjaeryanlee/rldb,No requirements found
+https://github.com/ziatdinovmax/ChemDisc,No requirements found
+https://github.com/tonghelen/JED-Method,No requirements found
+https://github.com/tianhai123/yolov3,No requirements found
+https://github.com/gitstevendeng/two-halves-statistically-different,No requirements found
+https://github.com/GeeLaw/bio-site,No requirements found
+https://github.com/adematti/pycute,"Failed: ERROR: Invalid requirement: 'scipy]' (from line 2 of /tmp/tmptpgr46gh)
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/kcmeehan/SmartDetect,No requirements found
+https://github.com/ethanhezhao/WEDTM,No requirements found
+https://github.com/5m0k3/gwd-yolov5-pytorch,No requirements found
+https://github.com/mp2893/mime,No requirements found
+https://github.com/chengyangfu/pytorch-groupnormalization,No requirements found
+https://github.com/textlab/cglossa,No requirements found
+https://github.com/wangsen99/MMoFusion,"Failed: ERROR: Cannot install -r /tmp/tmp1qsgkreb (line 15) and numpy==1.19.5 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/kornai/4lang,No requirements found
+https://github.com/alexdominguez09/pedestrian_direction,No requirements found
+https://github.com/beamandrew/BNN,No requirements found
+https://github.com/merrygoat/creep-sheared-gels,No requirements found
+https://github.com/rlworkgroup/garage,No matching distribution found
+https://github.com/ugent-korea/pytorch-unet-segmentation,No requirements found
+https://github.com/JoeMcEwen/FAST-PT,"Failed: ERROR: Invalid requirement: 'matplotlib]' (from line 3 of /tmp/tmpfrj6ek07)
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/nitarshan/robust-generalization-measures,Success
+https://github.com/freesunshine0316/semantic-nmt,No requirements found
+https://github.com/MrRen-sdhm/Embedded_Multi_Object_Detection_CNN,No requirements found
+https://github.com/zswang666/Stereo-LiDAR-CCVNorm,No requirements found
+https://github.com/derEitel/explainableMS,No requirements found
+https://github.com/acecreamu/color-constancy-googlenet,No requirements found
+https://github.com/freedombenLiu/RNN-Time-series-Anomaly-Detection,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [15 lines of output]
+      The 'sklearn' PyPI package is deprecated, use 'scikit-learn'
+      rather than 'sklearn' for pip commands.
+      
+      Here is how to fix this error in the main use cases:
+      - use 'pip install scikit-learn' rather than 'pip install sklearn'
+      - replace 'sklearn' by 'scikit-learn' in your pip requirements files
+        (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)
+      - if the 'sklearn' package is used by one of your dependencies,
+        it would be great if you take some time to track which package uses
+        'sklearn' instead of 'scikit-learn' and report it to their issue tracker
+      - as a last resort, set the environment variable
+        SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error
+      
+      More information is available at
+      https://github.com/scikit-learn/sklearn-pypi-package
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/cgcl-codes/attack_ptmc,"Failed:   error: subprocess-exited-with-error
+  
+  × pip subprocess to install build dependencies did not run successfully.
+  │ exit code: 1
+  ╰─> [68 lines of output]
+      Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com, https://pypi.ngc.nvidia.com
+      Ignoring numpy: markers 'python_version == ""3.6"" and platform_system != ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.7"" and platform_system != ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.6"" and platform_system == ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.7"" and platform_system == ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version >= ""3.8"" and platform_system == ""AIX""' don't match your environment
+      Collecting setuptools
+        Downloading setuptools-74.1.2-py3-none-any.whl (1.3 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 530.5 kB/s eta 0:00:00
+      Collecting wheel
+        Downloading wheel-0.44.0-py3-none-any.whl (67 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.1/67.1 kB 1.4 MB/s eta 0:00:00
+      Collecting Cython<3,>=0.29.21
+        Downloading Cython-0.29.37-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (1.9 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 894.4 kB/s eta 0:00:00
+      Collecting numpy==1.17.3
+        Downloading numpy-1.17.3.zip (6.4 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.4/6.4 MB 1.3 MB/s eta 0:00:00
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'error'
+        error: subprocess-exited-with-error
+      
+        × Preparing metadata (pyproject.toml) did not run successfully.
+        │ exit code: 1
+        ╰─> [26 lines of output]
+            Running from numpy source directory.
+            <string>:418: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+            Traceback (most recent call last):
+              File ""/tmp/tmpkk24wg5h/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+                main()
+              File ""/tmp/tmpkk24wg5h/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+                json_out['return_val'] = hook(**hook_input['kwargs'])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              File ""/tmp/tmpkk24wg5h/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+                return hook(metadata_directory, config_settings)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              File ""/tmp/pip-build-env-h1247hpm/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+                self.run_setup()
+              File ""/tmp/pip-build-env-h1247hpm/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+                super().run_setup(setup_script=setup_script)
+              File ""/tmp/pip-build-env-h1247hpm/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+                exec(code, locals())
+              File ""<string>"", line 443, in <module>
+              File ""<string>"", line 422, in setup_package
+              File ""/tmp/pip-install-p040psa8/numpy_1e624c7a2a03432d9663f661e76cfcd1/numpy/distutils/core.py"", line 26, in <module>
+                from numpy.distutils.command import config, config_compiler, \
+              File ""/tmp/pip-install-p040psa8/numpy_1e624c7a2a03432d9663f661e76cfcd1/numpy/distutils/command/config.py"", line 20, in <module>
+                from numpy.distutils.mingw32ccompiler import generate_manifest
+              File ""/tmp/pip-install-p040psa8/numpy_1e624c7a2a03432d9663f661e76cfcd1/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+                from distutils.msvccompiler import get_build_version as get_build_msvc_version
+            ModuleNotFoundError: No module named 'distutils.msvccompiler'
+            [end of output]
+      
+        note: This error originates from a subprocess, and is likely not a problem with pip.
+      error: metadata-generation-failed
+      
+      × Encountered error while generating package metadata.
+      ╰─> See above for output.
+      
+      note: This is an issue with the package mentioned above, not pip.
+      hint: See above for details.
+      
+      [notice] A new release of pip is available: 23.1.2 -> 24.2
+      [notice] To update, run: python -m pip install --upgrade pip
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× pip subprocess to install build dependencies did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/openai/generating-reviews-discovering-sentiment,No requirements found
+https://github.com/michael-goebel/ei_red,No matching distribution found
+https://github.com/lazharkhelifi/deeplearning_changedetection_remotesensing_review,No requirements found
+https://github.com/houssamzenati/Adversarially-Learned-Anomaly-Detection,No matching distribution found
+https://github.com/UnofficialJuliaMirror/HomotopyContinuation.jl-f213a82b-91d6-5c5d-acf7-10f1c761b327,No requirements found
+https://github.com/LittleYUYU/StackOverflow-Question-Code-Dataset,No requirements found
+https://github.com/yule-li/MassFace,No requirements found
+https://github.com/dineshzende/awesome-deep-learning-resources,No requirements found
+https://github.com/alfredvc/paac,No requirements found
+https://github.com/MLOPTPSU/FedTorch,"Failed:   error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [26 lines of output]
+      Running from numpy source directory.
+      <string>:461: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+      Traceback (most recent call last):
+        File ""/tmp/tmp0xjyzbnn/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp0xjyzbnn/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp0xjyzbnn/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+          return hook(metadata_directory, config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-w4mmrbgu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+          self.run_setup()
+        File ""/tmp/pip-build-env-w4mmrbgu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-w4mmrbgu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 488, in <module>
+        File ""<string>"", line 465, in setup_package
+        File ""/tmp/pip-install-yl5xyha5/numpy_35a8624e64194a81b26a522f9bee3520/numpy/distutils/core.py"", line 26, in <module>
+          from numpy.distutils.command import config, config_compiler, \
+        File ""/tmp/pip-install-yl5xyha5/numpy_35a8624e64194a81b26a522f9bee3520/numpy/distutils/command/config.py"", line 20, in <module>
+          from numpy.distutils.mingw32ccompiler import generate_manifest
+        File ""/tmp/pip-install-yl5xyha5/numpy_35a8624e64194a81b26a522f9bee3520/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+          from distutils.msvccompiler import get_build_version as get_build_msvc_version
+      ModuleNotFoundError: No module named 'distutils.msvccompiler'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/shangtse/robust-physical-attack,No requirements found
+https://github.com/jsztompka/MultiAgent-PPO,No requirements found
+https://github.com/harvitronix/reinforcement-learning-car,No requirements found
+https://github.com/ratschlab/boosting-bbvi,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [20 lines of output]
+      Traceback (most recent call last):
+        File ""/tmp/tmpfue0stkp/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmpfue0stkp/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmpfue0stkp/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 118, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-b17wxt5v/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 332, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-b17wxt5v/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 302, in _get_build_requires
+          self.run_setup()
+        File ""/tmp/pip-build-env-b17wxt5v/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-b17wxt5v/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 32, in <module>
+      RuntimeError: Python version 2.7 or 3.4+ is required.
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/astoycos/Mini_Project2,No requirements found
+https://github.com/RGLab/scamp,No requirements found
+https://github.com/magicsunday/pico,No requirements found
+https://github.com/wanglimin/MRCNN-Scene-Recognition,No requirements found
+https://github.com/labixiaoK/lda,No requirements found
+https://github.com/ShichengChen/Domain-Adversarial-Training-of-Neural-Networks,No requirements found
+https://github.com/pmorerio/dl-uncertainty,No requirements found
+https://github.com/zuoqing1988/mobile-sphereface-caffe,No requirements found
+https://github.com/kyunghwan/darknet_v3,No requirements found
+https://github.com/hollygrimm/cyclegan-keras-art-attrs,No requirements found
+https://github.com/lancopku/Chinese-Literature-NER-RE-Dataset,No requirements found
+https://github.com/pfnet-research/vat_nmt,No requirements found
+https://github.com/D-X-Y/DXY-Projects/tree/master/MSPLD,No requirements found
+https://github.com/WolfNiu/polite-dialogue-generation,No requirements found
+https://github.com/traveller59/second.pytorch,No requirements found
+https://github.com/yumaloop/mobilenetV2-cifar,No requirements found
+https://github.com/SeonbeomKim/TensorFlow-lstm-char-cnn,No requirements found
+https://github.com/MaStatLab/BGCR,No requirements found
+https://github.com/BeyremKh/ASNI,No requirements found
+https://github.com/FoelliX/AQL-System,No requirements found
+https://github.com/JakobHavtorn/nn,No requirements found
+https://github.com/rbrthogan/GAz,No requirements found
+https://github.com/liutianlin0121/contSentEmbed,No requirements found
+https://github.com/kingcheng2000/GAN,No requirements found
+https://github.com/averyfallson/rmffn,No requirements found
+https://github.com/WelkinYang/Zoneout-Pytorch,No requirements found
+https://github.com/BH94/cGANs-tensorflow-Python,No matching distribution found
+https://github.com/landeros10/infoganJL,No requirements found
+https://github.com/bioinformatics-ua/patienttm,No requirements found
+https://github.com/Montia/bw2color,No requirements found
+https://github.com/NeekhilD/Learning-Competition,No requirements found
+https://github.com/nightrome/cocostuff10k,No requirements found
+https://github.com/JamesGlare/Neural-Net-LabView-DLL,No requirements found
+https://github.com/danielamassiceti/geneval_visdial,No requirements found
+https://github.com/mingjund/mapudungun-corpus,No requirements found
+https://github.com/newalexander/supervised-cadres,"Failed:   error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [20 lines of output]
+      Traceback (most recent call last):
+        File ""/tmp/tmp45rbos2p/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+          main()
+        File ""/tmp/tmp45rbos2p/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+          json_out['return_val'] = hook(**hook_input['kwargs'])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/tmp45rbos2p/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 118, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-ahlweefu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 332, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File ""/tmp/pip-build-env-ahlweefu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 302, in _get_build_requires
+          self.run_setup()
+        File ""/tmp/pip-build-env-ahlweefu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File ""/tmp/pip-build-env-ahlweefu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+          exec(code, locals())
+        File ""<string>"", line 34, in <module>
+      RuntimeError: Python version 2.7 or 3.4+ is required.
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/saransh317/YOLOv3-Easy-Implementation,No requirements found
+https://github.com/qubole/qubole-log-datasets,No requirements found
+https://github.com/ye-kyaw-thu/myword,No requirements found
+https://github.com/jrterven/backsub,No requirements found
+https://github.com/ds4dm/sGat,No requirements found
+https://github.com/youzhonghui/ANL,No requirements found
+https://github.com/Gauravshahare/ADVERSIAL_AUTOENCODER,No requirements found
+https://github.com/njross/optimizer,No requirements found
+https://github.com/HarukiYqM/Non-Local-Sparse-Attention,No requirements found
+https://github.com/misho104/susy_cross_section,No requirements found
+https://github.com/cc-rmd-epibio/domain-adaptation-meta-analysis,"Failed:   error: subprocess-exited-with-error
+  
+  × pip subprocess to install build dependencies did not run successfully.
+  │ exit code: 1
+  ╰─> [68 lines of output]
+      Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com, https://pypi.ngc.nvidia.com
+      Ignoring numpy: markers 'python_version == ""3.6"" and platform_system != ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.7"" and platform_system != ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.6"" and platform_system == ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version == ""3.7"" and platform_system == ""AIX""' don't match your environment
+      Ignoring numpy: markers 'python_version >= ""3.8"" and platform_system == ""AIX""' don't match your environment
+      Collecting wheel
+        Downloading wheel-0.44.0-py3-none-any.whl (67 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.1/67.1 kB 695.5 kB/s eta 0:00:00
+      Collecting setuptools
+        Downloading setuptools-74.1.2-py3-none-any.whl (1.3 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 1.7 MB/s eta 0:00:00
+      Collecting Cython>=0.29.18
+        Downloading Cython-3.0.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 1.4 MB/s eta 0:00:00
+      Collecting numpy==1.17.3
+        Downloading numpy-1.17.3.zip (6.4 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.4/6.4 MB 1.0 MB/s eta 0:00:00
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'error'
+        error: subprocess-exited-with-error
+      
+        × Preparing metadata (pyproject.toml) did not run successfully.
+        │ exit code: 1
+        ╰─> [26 lines of output]
+            Running from numpy source directory.
+            <string>:418: UserWarning: Unrecognized setuptools command, proceeding with generating Cython sources and expanding templates
+            Traceback (most recent call last):
+              File ""/tmp/tmpx2xtuspm/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 353, in <module>
+                main()
+              File ""/tmp/tmpx2xtuspm/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 335, in main
+                json_out['return_val'] = hook(**hook_input['kwargs'])
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              File ""/tmp/tmpx2xtuspm/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py"", line 149, in prepare_metadata_for_build_wheel
+                return hook(metadata_directory, config_settings)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              File ""/tmp/pip-build-env-y21nnypu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 373, in prepare_metadata_for_build_wheel
+                self.run_setup()
+              File ""/tmp/pip-build-env-y21nnypu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 503, in run_setup
+                super().run_setup(setup_script=setup_script)
+              File ""/tmp/pip-build-env-y21nnypu/overlay/lib/python3.11/site-packages/setuptools/build_meta.py"", line 318, in run_setup
+                exec(code, locals())
+              File ""<string>"", line 443, in <module>
+              File ""<string>"", line 422, in setup_package
+              File ""/tmp/pip-install-pcy4chhw/numpy_d76d00ed4f5944d49a887823d6a73219/numpy/distutils/core.py"", line 26, in <module>
+                from numpy.distutils.command import config, config_compiler, \
+              File ""/tmp/pip-install-pcy4chhw/numpy_d76d00ed4f5944d49a887823d6a73219/numpy/distutils/command/config.py"", line 20, in <module>
+                from numpy.distutils.mingw32ccompiler import generate_manifest
+              File ""/tmp/pip-install-pcy4chhw/numpy_d76d00ed4f5944d49a887823d6a73219/numpy/distutils/mingw32ccompiler.py"", line 34, in <module>
+                from distutils.msvccompiler import get_build_version as get_build_msvc_version
+            ModuleNotFoundError: No module named 'distutils.msvccompiler'
+            [end of output]
+      
+        note: This error originates from a subprocess, and is likely not a problem with pip.
+      error: metadata-generation-failed
+      
+      × Encountered error while generating package metadata.
+      ╰─> See above for output.
+      
+      note: This is an issue with the package mentioned above, not pip.
+      hint: See above for details.
+      
+      [notice] A new release of pip is available: 23.1.2 -> 24.2
+      [notice] To update, run: python -m pip install --upgrade pip
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× pip subprocess to install build dependencies did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/sylvchev/dataset-ssvep-exoskeleton,No requirements found
+https://github.com/johnsonkee/graduate_design,No requirements found
+https://github.com/spcl/ucudnn,No requirements found
+https://github.com/lxdragoon/Modified-mnist,No requirements found
+https://github.com/HolyBayes/VarDropPytorch,Success
+https://github.com/nmeripo/Reducing-the-Dimensionality-of-Data-with-Neural-Networks,No requirements found
+https://github.com/hannorein/oec_outreach,No requirements found
+https://github.com/Stick-To/RefineDet-tensorflow,No requirements found
+https://github.com/MindSpore-paper-code-3/code8/tree/main/FaceQualityAssessment,No requirements found
+https://github.com/PaulAlbert31/LabelNoiseCorrection,"Failed: ERROR: Invalid requirement: 'blas=1.0=mkl' (from line 1 of /tmp/tmptj_hgw6a)
+Hint: = is not a valid operator. Did you mean == ?
+
+[notice] A new release of pip is available: 23.1.2 -> 24.2
+[notice] To update, run: python -m pip install --upgrade pip
+"
+https://github.com/andyxingxl/Deformable-generator,No requirements found
+https://github.com/vicdolean/schwarz,No requirements found
+https://github.com/cybertronai/pytorch-lamb,No requirements found
+https://github.com/EmmanuelSchaan/cmb_lensing_noise,No requirements found
+https://github.com/Shall-Ven/Activation-Attack,No requirements found
+https://github.com/saraswat/munkhdalai-nse,No requirements found
+https://github.com/sohaib50k/RESIST-Iris-template-reconstruction,No requirements found
+https://github.com/rmalav15/Super-SloMo,No requirements found
+https://github.com/tlienart/EPBP,No requirements found
+https://github.com/170928/-Review-Proximal-Policy-Optimization-Algorithms,No requirements found
+https://github.com/Mind23-2/MindCode-22,No requirements found
+https://github.com/trishac97/ML-Policy-PoW,No requirements found
+https://github.com/meelgroup/deweight,No requirements found
+https://github.com/IntensityTools/MultipoleExpansion,No requirements found
+https://github.com/EpistasisLab/regression-benchmark,No requirements found
+https://github.com/shizenglin/Deep-NCL,No requirements found
+https://github.com/kasaai/ctgan,No requirements found
+https://github.com/Jerryten/model_nlp,No requirements found
+https://github.com/cmu-safari/segram,No requirements found
+https://github.com/rjtshrm/point-normals-upsampling,No matching distribution found
+https://github.com/datadog/ssss-paper-code,No requirements found
+https://github.com/facebookresearch/measuring-emergent-comm,No requirements found
