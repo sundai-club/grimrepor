@@ -32,8 +32,8 @@ export default function Waitlist() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     
-      <main className="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center text-white">Join Our Waitlist</h1>
+      <main className="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg mb-4">
+        <h1 className="text-3xl font-bold mb-6 text-center text-white">Give Us a New Repo or Just Connect</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -57,10 +57,15 @@ export default function Waitlist() {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
           >
-            Join the Waitlist
+            Contact
           </button>
         </form>
+        <div className="mt-4 text-center">
+        </div>
       </main>
+      <Link href="/">
+        <span className="text-slate-400 hover:underline">← Back</span>
+      </Link>
     </div>
   );
 }

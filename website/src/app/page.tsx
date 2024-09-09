@@ -2,34 +2,45 @@
 import Head from 'next/head';
 import GifDisplay from './components/GifDisplay'; // Ensure the path to GifDisplay is correct
 import Link from 'next/link';
+import Image from 'next/image';
+import imgPath from '../../public/assets/grimrepor.png';
 
 export default function Home() {
   return (
-    <div className="bg-gray-900 text-gray-100">
-      <Head>
-        <title>AI Version Control Project</title>
-        <meta name="description" content="Support our AI-driven version control project." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <>
+    <Head>
+      <title>Grim-Repo</title>
+      <meta name="description" content="Support our AI-driven version control project." />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
       
+    <div className="bg-gray-900 text-gray-100">
 
       {/* Hero Section */}
       <section className="bg-gray-800 py-16 shadow-lg">
         <div className="container mx-auto px-4 text-center">
+          <Image
+            src={imgPath}
+            alt={"Grim Repor"}
+            width={300}
+            height={300}
+            className="rounded-lg shadow-lg mx-auto pb-4"
+            quality={100} // Ensures the image quality is high
+          />
+
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Grim-Repor:
           </h1>
           <h3 className="text-2xl md:text-5xl font-bold text-white mb-6">
-            Fixes your broken dead dependencies 
+            Just fixed your <s><i>dead</i></s> dependencies 
           </h3>          
           <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-[60vw] mx-auto">
-We've built an AI agent framwork that looks for great research papers with code with mismatching python dependencies and makes sure that your code compiles for your users!          </p>
+We've built an AI agent framwork that finds great research papers with code with broken-version python dependencies and makes sure that your code compiles for your users!          </p>
 <div className="bg-gray-900 text-green-400 font-mono text-lg md:text-xl py-4 px-6 rounded-lg mb-6 inline-block shadow-md cursor-pointer">
   <span className="text-blue-400">you are here because </span> we found your broken <span className="text-gray-100">&lt;repo&gt;</span>
   <svg
     onClick={() => {
-      const command = "pip-ai fix <your_repo_here>";
+      const command = "grimrepo fix <your_repo_here>";
       navigator.clipboard.writeText(command).then(() => {
         // Optionally, add feedback to the user here (e.g., a toast notification)
       }).catch(err => {
@@ -56,10 +67,10 @@ We've built an AI agent framwork that looks for great research papers with code 
 
 
         </div>
-        <div className='flex justify-center mt-2'>
+        <div className='flex justify-center mt-6'>
         <Link href="/waitlist">
             <span className="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition duration-300 cursor-pointer shadow-lg">
-              Tell your research friends about it now.
+              Give us a new repo to fix
             </span>
           </Link>
         </div>
@@ -69,39 +80,31 @@ We've built an AI agent framwork that looks for great research papers with code 
       <section className="bg-gray-700 py-20 shadow-lg">
         <div className="container mx-auto  text-center mt-[-2rem]">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-Reduce Install Time          </h1>        <p className="text-lg md:text-xl text-gray-300 mb-6">
-          We allow researchers to focus on what they do best: science.
+We Keep Great Code Alive          </h1>        <p className="text-lg md:text-xl text-gray-300 max-w-[60vw] mb-6 mx-auto">
+          Time goes by and dependencies break. But maintenance is dull. We allow researchers to focus on what they do best: science.
                     </p>
           <GifDisplay altText="Funny GIF" width={400} height={300} />
         </div>
       </section>
+
+
  {/* About Section */}
  <section className="py-16 bg-gray-900 shadow-md">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">Our Commitment</h2>
-          <p className="text-lg text-gray-400 max-w-[60vw] mx-auto">
+          <p className="text-lg text-gray-400 max-w-[60vw] mx-auto mb-6">
             We are a group of developers who have faced the frustration of incompatible dependencies in GitHub repositories for years. Our mission is to create an AI-driven tool to solve this issue for everyone.
           </p>
         </div>
-      </section>
-      {/* Support Section */}
-      <section className="py-16 bg-gray-800 shadow-md">
-  <div className="container mx-auto px-4 text-center">
-    <h2 className="text-3xl font-bold text-white mb-6">
-      Show us how painful is this issue for you
-    </h2>
-    <p className="text-lg text-gray-400 mb-6 max-w-[60vw] mx-auto">
-      We&apos;re competing with other teams to build this project. Your support helps us rise to the top and secure the resources needed to bring this AI version control tool to life.
-    </p>
 
-    <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-4">
       <a
         href="https://venmo.com/Connor-Dirks-1"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 text-white px-4 py-3 rounded-full hover:bg-green-600 transition duration-300 shadow-lg"
       >
-        OMG - HERE is $10
+        THANKS TIP! $10
       </a>
 
       <a
@@ -119,11 +122,10 @@ Reduce Install Time          </h1>        <p className="text-lg md:text-xl text-
         rel="noopener noreferrer"
         className="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition duration-300 shadow-lg"
       >
-        Tell me when it&apos;s ready
+        Give us a new repo to fix
       </a>
     </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Footer */}
@@ -133,5 +135,6 @@ Reduce Install Time          </h1>        <p className="text-lg md:text-xl text-
         </div>
       </footer>
     </div>
+    </>
   );
 }

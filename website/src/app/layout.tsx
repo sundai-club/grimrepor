@@ -7,7 +7,7 @@ import Navbar from "./components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "pip-ai",
+  title: "Grim-Repo",
   description: "Ai version control for all your broken dependencies",
 };
 
@@ -20,7 +20,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-     
       <body className={`${inter.className} h-screen bg-white`}>
         <Navbar />
         {children}
