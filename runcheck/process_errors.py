@@ -87,7 +87,7 @@ def find_requirements_file(repo):
         print(f"Error finding requirements.txt: {str(e)}")
     return None
 
-# Function to process the given repository link
+# Function to process the given repository link and return updated requirements
 def process_repository(repo_url):
     # Extract the owner and repo name from the URL
     repo_name = repo_url.split('github.com/')[-1].strip('/')
@@ -100,7 +100,7 @@ def process_repository(repo_url):
         file_path = find_requirements_file(repo)
         if not file_path:
             print(f"No requirements.txt or similar file found in {repo_name}")
-            return
+            return None  # Return None if no requirements file found
 
         print(f"Found requirements file at {file_path}")
 
@@ -115,37 +115,23 @@ def process_repository(repo_url):
         # Process requirements and find the versions at commit time
         updated_requirements = process_requirements(requirements_text, commit_date)
 
-        # Write the updated requirements to a file
-        with open("updated_requirements.txt", "w") as file_output:
-            for requirement in updated_requirements:
-                file_output.write(requirement + "\n")
+        # Convert updated_requirements to a string format
+        updated_requirements_str = "\n".join(updated_requirements)
 
-        print(f"Updated requirements for {repo_name} written to updated_requirements.txt")
+        print(f"Updated requirements for {repo_name}:\n{updated_requirements_str}")
 
         # Use OpenAI to check and update the requirements file
-        check_and_update_requirements("updated_requirements.txt")
+        gpt_output = check_and_update_requirements(updated_requirements_str)
+
+        return gpt_output
 
     except Exception as e:
         print(f"Error processing {repo_name}: {str(e)}")
+        return None
 
 # Function to check and update the requirements file using OpenAI
-def check_and_update_requirements(file_path):
-    def read_all_files_content(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read()
-        except Exception as e:
-            print(f"Error reading file {file_path}: {str(e)}")
-            return ""
-
-    all_files_content = read_all_files_content(file_path)
-
-    prompt = f"This is the requirement.txt : " + all_files_content + ", see if the packages work together and return the updated requirement.txt with fixed versions"
-
-    # Define the Pydantic model to hold structured responses
-    class UpdateSuggestion(BaseModel):
-        file_name: str
-        suggestion: str
+def check_and_update_requirements(requirements_text):
+    prompt = f"This is the requirement.txt : " + requirements_text + ", see if the packages work together and return the updated requirement.txt with fixed versions"
 
     # Create the prompt to send to GPT
     system_prompt = """
@@ -166,14 +152,9 @@ def check_and_update_requirements(file_path):
         messages=[{"role": "user", "content": full_prompt}]
     )
 
-    # Print the suggestions
+    # Get the suggestions
     gpt_output = response.choices[0].message['content']
-    print(gpt_output)
-
-    with open("updated_requirement_from_gpt.txt", "w") as file:
-        file.write(gpt_output)
-
-    print("The output has been saved to updated_requirement_from_gpt.txt")
+    return gpt_output
 
 # Read the build_check_results.csv file
 df = pd.read_csv("build_check_results.csv")
@@ -181,6 +162,17 @@ df = pd.read_csv("build_check_results.csv")
 # Filter the repositories that do not have "success" status
 error_repos = df[~df['status'].str.contains("success", case=False)]['file_or_repo'].tolist()
 
-# Process each repository with errors
+# List to store the results
+results = []
+
+# Process each repository with errors and save the result to the list
 for repo_url in error_repos:
-    process_repository(repo_url)
+    gpt_output = process_repository(repo_url)
+    if gpt_output:
+        results.append({'github_link': repo_url, 'updated_requirements': gpt_output})
+
+# Convert the results to a DataFrame and save as CSV
+results_df = pd.DataFrame(results)
+results_df.to_csv("updated_requirements_results.csv", index=False)
+
+print("The updated requirements have been saved to updated_requirements_results.csv")
