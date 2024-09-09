@@ -4,7 +4,6 @@ import requests
 import time
 from dotenv import load_dotenv
 import os
-from pydantic import BaseModel
 import openai
 
 # Load environment variables from .env file
@@ -87,6 +86,51 @@ def find_requirements_file(repo):
         print(f"Error finding requirements.txt: {str(e)}")
     return None
 
+# Function to check and update the requirements file using OpenAI
+def check_and_update_requirements(requirements_text):
+    prompt = f"This is the requirement.txt : " + requirements_text + ", see if the packages work together and return the updated requirement.txt with fixed versions"
+
+    # Create the prompt to send to GPT
+    system_prompt = """
+    You are a senior software engineer reviewing the following repository files.
+    Please analyze the following requirement.txt and make sure all the packages work together - Try to use the versions already used and only change if you think it won't work together else just clean the requirement.txt file. Return the list of packages along with their version in this format "
+    package_1==version_no_for_package_1_that_works_with_the_other
+    package_2==version_no_for_package_2_that_works_with_the_other
+    package_3==version_no_for_package_3_that_works_with_the_other
+    "
+    """
+
+    # Combine the prompt with the content
+    full_prompt = system_prompt + "\n\n" + prompt  # Limit the content sent to GPT to 1000 characters for now
+
+    # Call the GPT-4 model with OpenAI to analyze the files and return structured output
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": full_prompt}]
+    )
+
+    # Get the suggestions
+    gpt_output = response.choices[0].message['content']
+    return gpt_output
+
+# Function to commit and push the updated requirements file to the repository
+def commit_and_push(repo, file_path, updated_requirements_str):
+    try:
+        # Get the file content and sha
+        contents = repo.get_contents(file_path)
+        sha = contents.sha
+
+        # Commit and push the updated requirements file
+        repo.update_file(
+            path=file_path,
+            message="Update requirements.txt with fixed versions",
+            content=updated_requirements_str,
+            sha=sha
+        )
+        print(f"Updated requirements.txt pushed to {repo.full_name}")
+    except Exception as e:
+        print(f"Error pushing updated requirements.txt to {repo.full_name}: {str(e)}")
+
 # Function to process the given repository link and return updated requirements
 def process_repository(repo_url):
     # Extract the owner and repo name from the URL
@@ -123,41 +167,17 @@ def process_repository(repo_url):
         # Use OpenAI to check and update the requirements file
         gpt_output = check_and_update_requirements(updated_requirements_str)
 
+        # Commit and push the updated requirements file to the repository
+        commit_and_push(repo, file_path, gpt_output)
+
         return gpt_output
 
     except Exception as e:
         print(f"Error processing {repo_name}: {str(e)}")
         return None
 
-# Function to check and update the requirements file using OpenAI
-def check_and_update_requirements(requirements_text):
-    prompt = f"This is the requirement.txt : " + requirements_text + ", see if the packages work together and return the updated requirement.txt with fixed versions"
-
-    # Create the prompt to send to GPT
-    system_prompt = """
-    You are a senior software engineer reviewing the following repository files.
-    Please analyze the following requirement.txt and make sure all the packages work together - Try to use the versions already used and only change if you think it won't work together else just clean the requirement.txt file. Return the list of packages along with their version in this format "
-    package_1==version_no_for_package_1_that_works_with_the_other
-    package_2==version_no_for_package_2_that_works_with_the_other
-    package_3==version_no_for_package_3_that_works_with_the_other
-    "
-    """
-
-    # Combine the prompt with the content
-    full_prompt = system_prompt + "\n\n" + prompt  # Limit the content sent to GPT to 1000 characters for now
-
-    # Call the GPT-4 model with OpenAI to analyze the files and return structured output
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": full_prompt}]
-    )
-
-    # Get the suggestions
-    gpt_output = response.choices[0].message['content']
-    return gpt_output
-
 # Read the build_check_results.csv file
-df = pd.read_csv("build_check_results.csv")
+df = pd.read_csv("runcheck/build_check_results.csv")
 
 # Filter the repositories that do not have "success" status
 error_repos = df[~df['status'].str.contains("success", case=False)]['file_or_repo'].tolist()
@@ -175,4 +195,4 @@ for repo_url in error_repos:
 results_df = pd.DataFrame(results)
 results_df.to_csv("updated_requirements_results.csv", index=False)
 
-print("The updated requirements have been saved to updated_requirements_results.csv")
+print("The updated requirements have been saved to runcheck/updated_requirements_results.csv")
