@@ -4,7 +4,9 @@ import requests
 import time
 from dotenv import load_dotenv
 import os
-import openai
+import instructor
+from pydantic import BaseModel
+from openai import OpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -17,7 +19,12 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 g = Github(GITHUB_TOKEN)
 
 # Initialize OpenAI client
-openai.api_key = OPENAI_API_KEY
+client = instructor.from_openai(OpenAI(api_key=OPENAI_API_KEY))
+
+# Define the Pydantic model to hold structured responses
+class UpdateSuggestion(BaseModel):
+    file_name: str
+    suggestion: str
 
 # Function to check if the requirement file has version numbers or not
 def has_versions(requirements_content):
@@ -103,14 +110,15 @@ def check_and_update_requirements(requirements_text):
     # Combine the prompt with the content
     full_prompt = system_prompt + "\n\n" + prompt  # Limit the content sent to GPT to 1000 characters for now
 
-    # Call the GPT-4 model with OpenAI to analyze the files and return structured output
-    response = openai.ChatCompletion.create(
+    # Call the GPT-4 model with Instructor to analyze the files and return structured output
+    response = client.chat.completions.create(
         model="gpt-4",
-        messages=[{"role": "user", "content": full_prompt}]
+        messages=[{"role": "user", "content": full_prompt}],
+        response_model=UpdateSuggestion  # Use the Pydantic model to ensure structured output
     )
 
     # Get the suggestions
-    gpt_output = response.choices[0].message['content']
+    gpt_output = response.suggestion
     return gpt_output
 
 # Function to commit and push the updated requirements file to the repository
@@ -195,4 +203,4 @@ for repo_url in error_repos:
 results_df = pd.DataFrame(results)
 results_df.to_csv("updated_requirements_results.csv", index=False)
 
-print("The updated requirements have been saved to runcheck/updated_requirements_results.csv")
+print("The updated requirements have been saved to updated_requirements_results.csv")
