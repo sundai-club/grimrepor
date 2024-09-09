@@ -177,7 +177,7 @@ def process_repository(repo_url):
         return None
 
 # Read the build_check_results.csv file
-df = pd.read_csv("runcheck/build_check_results.csv")
+df = pd.read_csv("build_check_results.csv")
 
 # Filter the repositories that do not have "success" status
 error_repos = df[~df['status'].str.contains("success", case=False)]['file_or_repo'].tolist()

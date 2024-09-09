@@ -3,6 +3,7 @@ import os
 import subprocess
 import shutil
 import requests
+import pandas as pd
 
 
 # GitHub API URL for creating repositories
@@ -49,11 +50,18 @@ def build_check():
     return success, fixed, json_data
 
 # List of GitHub repositories
-repos_list = ['https://github.com/jishengpeng/wavtokenizer']  # Example scraped data
+df = pd.read_csv('runcheck/build_check_results.csv')
+repos_list = list(df.itertuples(index=False, name=None))
 
 # Iterate over each repository in the list
-for repo in repos_list:
-    from IPython import embed; embed()
+for repo, status in repos_list:
+    # from IPython import embed; embed()
+    print(f"Processing repository: {repo}")
+    print(f"Status: {status}")
+
+    if status == "Success" or status == "No requirements found":
+        continue
+
     # Extract the repository name from the URL
     repo_name = os.path.basename(repo).replace(".git", "")
 
@@ -87,10 +95,6 @@ for repo in repos_list:
         subprocess.run(["git", "add", "*"], check=True)
         subprocess.run(["git", "commit", "-m", "repo fixed your env file"], check=True)
         
-        # Remove the current .git folder and reinitialize the Git repository
-        # shutil.rmtree(".git")
-        # subprocess.run(["git", "init"], check=True)
-        
         # Call the function to create a new GitHub repo (this is a placeholder)
         new_repo_name = f"{username}_{repo_name}"
         create_new_github_repo(new_repo_name)
@@ -100,7 +104,5 @@ for repo in repos_list:
         subprocess.run(["git", "remote", "remove", "origin"], check=True)
         subprocess.run(["git", "remote", "add", "origin", new_repo_url], check=True)
         subprocess.run(["git", "push", "origin", "main"], check=True)
-    
-    # Move out of the repo directory and delete the cloned repo directory if needed
 
 print("All repositories processed successfully.")
