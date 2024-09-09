@@ -1,8 +1,7 @@
 
 **Just fixed your dead dependencies!**
 
-[Grim Repor Website](https://grimrepor.sundai.club) | [Twitter](https://x.com/GrimRepor)
-
+[Grim Repor Website](https://grimrepor.sundai.club) | [Twitter](https://x.com/GrimRepor) 
 ---
 
 ## Overview
@@ -25,6 +24,7 @@ Give us a new repo, and we’ll put it’s back in action. We are dedicated to k
 ## Why Choose Grim Repor?
 
 Over time, dependencies fall apart, versions get cranky, and your code starts gathering dust. But why waste your brilliance fixing boring dependency issues when **Grim Repor** can handle the dirty work? Whether you're a researcher, developer, or just trying to keep your stars and citations intact — let’s be honest, you're better off focusing on innovation. Leave the tedious dependencies to us. Need proof? Check out Grim Repor on GitHub and watch us keep your code shining!
+[Github](https://github.com/grimrepor)
 
 **We Keep Great Code Alive!**
 
