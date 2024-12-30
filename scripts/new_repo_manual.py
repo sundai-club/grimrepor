@@ -7,6 +7,10 @@ import pandas as pd
 import yaml
 import tempfile
 from tqdm import tqdm
+from github import Github
+import instructor
+from pydantic import BaseModel
+from openai import OpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -21,6 +25,10 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 if not GITHUB_TOKEN:
     raise ValueError("GITHUB_TOKEN not found in .env file")
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+g = Github(GITHUB_TOKEN)
+client = instructor.from_openai(OpenAI(api_key=OPENAI_API_KEY))
 
 def create_new_github_repo(new_repo_name):
     headers = {
@@ -225,6 +233,70 @@ def get_default_branch(repo_path):
         print(f"Error getting branch name: {e}")
         return "master"  # fallback to master if command fails
 
+class UpdateSuggestion(BaseModel):
+    file_name: str
+    suggestion: str
+
+def has_versions(requirements_content):
+    for line in requirements_content.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if any(operator in stripped for operator in ["==", ">=", "<=", ">"]):
+            return True
+    return False
+
+def get_version_at_date(package_name, commit_date):
+    pypi_url = f'https://pypi.org/pypi/{package_name}/json'
+    try:
+        response = requests.get(pypi_url)
+        if response.status_code == 200:
+            data = response.json()
+            releases = data.get('releases', {})
+            for version, release_data in sorted(releases.items(), reverse=True):
+                for release in release_data:
+                    release_date = release.get('upload_time')
+                    if release_date and release_date <= commit_date:
+                        return version
+    except Exception as e:
+        print(f"Error getting version for {package_name}: {str(e)}")
+    return None
+
+def process_requirements(requirements_content, commit_date):
+    updated_requirements = []
+    for line in requirements_content.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if "==" not in stripped:
+            package_name = stripped.split()[0]
+            version = get_version_at_date(package_name, commit_date)
+            if version:
+                updated_requirements.append(f"{package_name}=={version}")
+            else:
+                updated_requirements.append(package_name)
+        else:
+            updated_requirements.append(stripped)
+    return updated_requirements
+
+def check_and_update_requirements(requirements_text):
+    prompt = f"This is the requirement.txt : {requirements_text}, see if the packages work together and return the updated requirement.txt with fixed versions"
+    system_prompt = """
+    You are a senior software engineer reviewing the following repository files.
+    Please analyze the following requirement.txt and make sure all the packages work together - Try to use the versions already used and only change if you think it won't work together else just clean the requirement.txt file. Return the list of packages along with their version in this format "
+    package_1==version_no_for_package_1_that_works_with_the_other
+    package_2==version_no_for_package_2_that_works_with_the_other
+    package_3==version_no_for_package_3_that_works_with_the_other
+    "
+    """
+    full_prompt = system_prompt + "\n\n" + prompt
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": full_prompt}],
+        response_model=UpdateSuggestion
+    )
+    return response.suggestion
+
 def process_repository(repo_url):
     try:
         # Clean up the URL
@@ -274,11 +346,51 @@ def process_repository(repo_url):
             subprocess.run(["python3", "-m", "venv", "venv"], check=True)
             print("Created virtual environment with default Python")
 
+        # After cloning and before build check, add GPT analysis
+        repo_name = repo_url.split('github.com/')[-1].strip('/')
+        try:
+            github_repo = g.get_repo(repo_name)
+            contents = github_repo.get_contents("")
+            requirements_file = None
+            
+            # Find requirements file
+            for content_file in contents:
+                if "requirement" in content_file.name.lower() and ".txt" in content_file.name:
+                    requirements_file = content_file
+                    break
+
+            if requirements_file:
+                # Get commit history and date
+                commits = github_repo.get_commits(path=requirements_file.path)
+                commit_date = commits[0].commit.author.date.isoformat()
+
+                # Get requirements content
+                requirements_text = requirements_file.decoded_content.decode()
+
+                # Process requirements with versions
+                updated_requirements = process_requirements(requirements_text, commit_date)
+                updated_requirements_str = "\n".join(updated_requirements)
+
+                # Get GPT suggestions
+                gpt_output = check_and_update_requirements(updated_requirements_str)
+                
+                # Write the GPT suggestions to a new file
+                with open("requirements.txt.gpt", "w") as f:
+                    f.write(gpt_output)
+                
+                print("GPT analysis completed and saved to requirements.txt.gpt")
+
+        except Exception as e:
+            print(f"Error in GPT analysis: {str(e)}")
+
         # Run build check
         success, fixed, json_data = build_check()
 
         if success and fixed:
-            if os.path.exists("requirements_fixed.txt"):
+            # If GPT analysis was successful, use that version of requirements
+            if os.path.exists("requirements.txt.gpt"):
+                shutil.move("requirements.txt.gpt", "requirements.txt")
+            elif os.path.exists("requirements_fixed.txt"):
                 shutil.move("requirements_fixed.txt", "requirements.txt")
 
             subprocess.run(["git", "add", "*"], check=True)
