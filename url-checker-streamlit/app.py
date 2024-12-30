@@ -31,17 +31,19 @@ EXAMPLE_REPO = "https://github.com/rjtshrm/point-normals-upsampling.git"
 # Create columns for the URL input section
 col1, col2 = st.columns([4, 1])
 
+# Add empty space to align with the label
+with col2:
+    st.write("")  # This creates vertical space
+    # Add "Use Example" button
+    if st.button("Use Example"):
+        st.session_state.url_input = EXAMPLE_REPO
+        st.rerun()
+
 with col1:
     # Create input field
     url = st.text_input("Enter GitHub Repository URL", 
                        value=st.session_state.url_input,
                        placeholder="https://github.com/username/repository")
-
-with col2:
-    # Add "Use Example" button
-    if st.button("Use Example"):
-        st.session_state.url_input = EXAMPLE_REPO
-        st.rerun()
 
 # Create an expander for the console output
 with st.expander("Console Output", expanded=True):
