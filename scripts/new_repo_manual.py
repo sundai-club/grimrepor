@@ -11,6 +11,7 @@ from github import Github
 import instructor
 from pydantic import BaseModel
 from openai import OpenAI
+from typing import Callable
 
 # Load environment variables from .env file
 load_dotenv()
@@ -297,7 +298,13 @@ def check_and_update_requirements(requirements_text):
     )
     return response.suggestion
 
-def process_repository(repo_url):
+def process_with_status_callback(message: str, callback: Callable[[str], None] = None):
+    """Wrapper to handle status messages with optional callback."""
+    if callback:
+        callback(message)
+    print(message)
+
+def process_repository(repo_url, status_callback: Callable[[str], None] = None):
     try:
         # Clean up the URL
         repo_url = repo_url.rstrip('/')
@@ -309,12 +316,14 @@ def process_repository(repo_url):
         username = repo_url.split("/")[-2]
         new_repo_name = f"{username}_{repo_name}"
 
+        process_with_status_callback(f"Processing repository: {repo_url}", status_callback)
+        
         # Create a new directory for the repo
         repo_dir = os.path.join(ROOT, "output", f"{repo_name}_dir")
         
         # Remove the directory if it exists
         if os.path.exists(repo_dir):
-            print(f"Removing existing directory: {repo_dir}")
+            process_with_status_callback(f"Removing existing directory: {repo_dir}", status_callback)
             shutil.rmtree(repo_dir)
         
         # Create fresh directory
@@ -323,7 +332,7 @@ def process_repository(repo_url):
 
         # Clone the repository
         clone_url = f"{repo_url}.git"
-        print(f"Cloning from: {clone_url}")
+        process_with_status_callback(f"Cloning from: {clone_url}", status_callback)
         subprocess.run(["git", "clone", clone_url], check=True)
 
         # Navigate into the cloned repository
@@ -341,10 +350,10 @@ def process_repository(repo_url):
         # Create virtual environment - try Python 3.10 first if available
         try:
             subprocess.run(["python3.10", "-m", "venv", "venv"], check=True)
-            print("Created virtual environment with Python 3.10")
+            process_with_status_callback("Created virtual environment with Python 3.10", status_callback)
         except (subprocess.CalledProcessError, FileNotFoundError):
             subprocess.run(["python3", "-m", "venv", "venv"], check=True)
-            print("Created virtual environment with default Python")
+            process_with_status_callback("Created virtual environment with default Python", status_callback)
 
         # After cloning and before build check, add GPT analysis
         repo_name = repo_url.split('github.com/')[-1].strip('/')
@@ -378,10 +387,10 @@ def process_repository(repo_url):
                 with open("requirements.txt.gpt", "w") as f:
                     f.write(gpt_output)
                 
-                print("GPT analysis completed and saved to requirements.txt.gpt")
+                process_with_status_callback("GPT analysis completed and saved to requirements.txt.gpt", status_callback)
 
         except Exception as e:
-            print(f"Error in GPT analysis: {str(e)}")
+            process_with_status_callback("Error in GPT analysis: {str(e)}", status_callback)
 
         # Run build check
         success, fixed, json_data = build_check()
@@ -422,7 +431,7 @@ def process_repository(repo_url):
             subprocess.run(["git", "remote", "add", "origin", new_repo_url], check=True)
             
             # Push to the correct branch
-            print(f"Pushing to branch: {branch_name}")
+            process_with_status_callback(f"Pushing to branch: {branch_name}", status_callback)
             subprocess.run(["git", "push", "-f", "origin", branch_name], check=True)
             
             # Clean up
@@ -436,5 +445,5 @@ def process_repository(repo_url):
         return False, None
 
     except Exception as e:
-        print(f"Error processing repository: {str(e)}")
+        process_with_status_callback(f"Error processing repository: {str(e)}", status_callback)
         return False, None 

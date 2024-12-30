@@ -17,16 +17,36 @@ st.set_page_config(page_title="Repository Checker", page_icon="🔗")
 # Add title
 st.title("Repository Checker and Fixer")
 
+# Initialize session state for console output if it doesn't exist
+if 'console_output' not in st.session_state:
+    st.session_state.console_output = []
+
 # Create input field
 url = st.text_input("Enter GitHub Repository URL", placeholder="https://github.com/username/repository")
+
+# Create an expander for the console output
+with st.expander("Console Output", expanded=True):
+    console_output = st.empty()
+
+def update_console(message: str):
+    """Update the console output in Streamlit."""
+    st.session_state.console_output.append(message)
+    # Join all messages with newlines
+    full_output = "\n".join(st.session_state.console_output)
+    # Update the display
+    console_output.text(full_output)
 
 # Create check button
 if st.button("Process Repository"):
     if url:
         # First check if it's a valid GitHub URL
         if check_url(url) == "correct":
+            # Clear previous output
+            st.session_state.console_output = []
+            console_output.empty()
+            
             with st.spinner("Processing repository..."):
-                success, commit_url = process_repository(url)
+                success, commit_url = process_repository(url, status_callback=update_console)
                 if success:
                     st.success("✅ Repository processed successfully!")
                     # Display clickable commit link
