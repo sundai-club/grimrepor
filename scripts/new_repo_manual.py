@@ -387,14 +387,26 @@ def process_repository(repo_url):
         success, fixed, json_data = build_check()
 
         if success and fixed:
-            # If GPT analysis was successful, use that version of requirements
             if os.path.exists("requirements.txt.gpt"):
                 shutil.move("requirements.txt.gpt", "requirements.txt")
             elif os.path.exists("requirements_fixed.txt"):
                 shutil.move("requirements_fixed.txt", "requirements.txt")
 
             subprocess.run(["git", "add", "*"], check=True)
-            subprocess.run(["git", "commit", "-m", "repo fixed your env file"], check=True)
+            
+            # Make the commit and capture its hash
+            commit_process = subprocess.run(
+                ["git", "commit", "-m", "repo fixed your env file"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            
+            # Get the commit hash
+            commit_hash = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"],
+                text=True
+            ).strip()
 
             # Check if repository already exists
             if not check_if_repo_exists(new_repo_name):
@@ -416,7 +428,10 @@ def process_repository(repo_url):
             # Clean up
             subprocess.run(["pip", "cache", "purge"], check=True)
             os.chdir(ROOT)
-            return True, new_repo_url
+            
+            # Create the commit URL
+            commit_url = f"https://github.com/grimrepor/{new_repo_name}/commit/{commit_hash}"
+            return True, commit_url
             
         return False, None
 

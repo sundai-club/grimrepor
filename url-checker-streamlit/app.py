@@ -26,10 +26,16 @@ if st.button("Process Repository"):
         # First check if it's a valid GitHub URL
         if check_url(url) == "correct":
             with st.spinner("Processing repository..."):
-                success, new_repo_url = process_repository(url)
+                success, commit_url = process_repository(url)
                 if success:
                     st.success("✅ Repository processed successfully!")
-                    st.write(f"New repository created at: {new_repo_url}")
+                    # Display clickable commit link
+                    st.markdown(f"""
+                    ### Repository Fixed! 
+                    👉 [Click here to view the changes]({commit_url})
+                    
+                    This link shows you exactly what was changed in the requirements file.
+                    """)
                 else:
                     st.error("❌ Failed to process repository")
         else:
@@ -47,4 +53,5 @@ with st.expander("About this app"):
        - Clone the repository
        - Check and fix dependencies
        - Create a new fixed repository
+       - Show you exactly what changes were made
     """) 
