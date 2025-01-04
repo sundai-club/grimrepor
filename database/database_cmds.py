@@ -22,6 +22,11 @@ source venv/bin/activate
 (venv) python3 database/database_cmds.py
 """
 
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(ROOT)
+
+from utils.decorators import timeit
+
 load_dotenv()
 
 # Database configuration
@@ -29,17 +34,11 @@ DATABASE_NAME = os.getenv('DATABASE_NAME') or "grimrepor_db"
 MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
 MYSQL_USER = os.getenv('MYSQL_USER', 'root')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
-MYSQL_PORT = int(os.getenv('MYSQL_PORT', 3306))
+MYSQL_PORT = int(os.getenv('MYSQL_PORT', 33060))
 
+TABLE_NAME = "papers_and_code"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(ROOT)
-from utils.decorators import timeit
-
 OS = sys.platform
-if OS != 'linux' and OS != 'darwin':
-    raise Exception('Unsupported OS')
 
 
 def is_mysql_installed() -> bool:
@@ -66,15 +65,6 @@ def is_mysql_installed() -> bool:
             return False
     return False
 
-def is_mysql_running() -> bool:
-    """Check if MySQL server is running"""
-    try:
-        subprocess.run(['mysqladmin', 'ping'],
-            capture_output=True, check=True)
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
 def launch_server() -> bool:
     if OS == "linux":
         try:
@@ -96,57 +86,117 @@ def launch_server() -> bool:
         print("Unsupported OS")
         return False
 
-def spinup_mysql_server() -> bool:
-    """Ensure MySQL server is running"""
-    if is_mysql_running():
-        print("MySQL server is already running")
+def is_mysql_running() -> bool:
+    """Check if MySQL server is running"""
+    run_check = f"mysqladmin ping -u {MYSQL_USER} --password={MYSQL_PASSWORD}"
+    try:
+        subprocess.run(run_check.split(), capture_output=True, check=True)
         return True
+    except subprocess.CalledProcessError:
+        return False
+
+def login_server() -> bool:
+    login_cmd = f"mysql -u {MYSQL_USER} --password={MYSQL_PASSWORD} -e 'SELECT 1;'"
+    try:
+        subprocess.run(login_cmd, shell=True, check=True)
+        print(f"Successfully logged into MySQL server as {escape_value(MYSQL_USER)}@{escape_value(MYSQL_HOST)}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error logging into MySQL server: {e}")
+        return False
+    return True
+
+def initialize_mysql() -> bool:
+    """
+    This needs to be run to ensure MySQL is installed and running
+    """
+    env_path = os.path.join(ROOT, '.env')
+    if not os.path.exists(env_path):
+        print(f".env file not found at {env_path}")
+
+    if OS != 'linux' and OS != 'darwin':
+        raise Exception('Unsupported OS')
+
+    if not is_mysql_installed():
+        print("MySQL is not installed. Please run database/mysql_setup.sh to install MySQL.")
+        sys.exit(1)
+    else:
+        print("MySQL is installed.")
 
     if not launch_server():
         print("Error launching MySQL server")
-        return False
+        sys.exit(1)
+    else:
+        print("MySQL server has been launched.")
 
-    # Verify server started successfully
-    return is_mysql_running()
+    if not is_mysql_running():
+        print("Failed to start MySQL server. Check system logs")
+        sys.exit(1)
+    else:
+        print("MySQL server is running.")
 
-def create_session(db_name: str = os.getenv('DATABASE_NAME')) -> object:
+    if not login_server():
+        print("Failed to login to MySQL server.")
+        sys.exit(1)
+    else:
+        print("Logged into MySQL server.")
+
+    print("MySQL server is ready for use.")
+    return True
+
+def create_session(db_name: str = None) -> object:
     """
     create mysql server session
     can create a database without giving db_name
     and call later with db_name to connect to the database
     returns the session object (open connection)
     """
-    conn_params = {}
-    conn_params["host"] = MYSQL_HOST
-    conn_params["port"] = MYSQL_PORT
-    conn_params["user"] = MYSQL_USER
-    conn_params["password"] = MYSQL_PASSWORD
+    conn_params = {
+        "host": MYSQL_HOST,
+        "port": MYSQL_PORT,
+        "user": MYSQL_USER,
+        "password": MYSQL_PASSWORD
+    }
 
     try:
         session = mysqlx.get_session(**conn_params)
         schema = None
         if db_name:
             schema = session.get_schema(db_name)
+            if not schema.exists_in_database():
+                create_db(db_name)
+                schema = session.get_schema(db_name)
             # WARNING: we intentionally select the database for the session
-            # this will propogate to chained functions but not to new sessions
+            # this will propagate to chained functions but not to new sessions
             session.sql(f"USE {db_name}").execute()  # Ensure the database is selected
 
-        # print(f'{db_name = }\t{session = }\t{schema = }')
+        print(f"Successfully connected to MySQL as '{conn_params['user']}'@'{conn_params['host']}'")
         return session, schema
+    except mysqlx.InterfaceError as e:
+        print(f"InterfaceError: {e}")
+    except mysqlx.ProgrammingError as e:
+        print(f"ProgrammingError: {e}")
+    except mysqlx.DatabaseError as e:
+        print(f"DatabaseError: {e}")
     except Exception as e:
         print(f"Error connecting to mysql as '{conn_params['user']}'@'{conn_params['host']}'\n{str(e)}")
-        # return None, None
-        sys.exit(1)
+    sys.exit(1)
 
 def create_db(db_name: str = "grimrepor_db") -> bool:
     """
     create a new database
     ok if the database already exists
     """
-    session, _ = create_session()
+    session = None
+    try:
+        session, _ = create_session()
+    except Exception as e:
+        print(f"Error creating session: {str(e)}")
+        return False
+
     try:
         session.sql(f"CREATE DATABASE IF NOT EXISTS {db_name}").execute()
         print(f"Database '{db_name}' is active.")
+        return True
     except mysqlx.DatabaseError as e:
         if "schema exists" in str(e).lower():
             print(f"Database {db_name} already exists.")
@@ -158,7 +208,13 @@ def create_db(db_name: str = "grimrepor_db") -> bool:
         session.close()
 
 def show_databases() -> bool:
-    session, _ = create_session()
+    session = None
+    try:
+        session, _ = create_session()
+    except Exception as e:
+        print(f"Error creating session: {str(e)}")
+        return False
+
     try:
         print(f"\nDatabases: {session.get_schemas()}\n")
         if session:
@@ -351,6 +407,7 @@ def process_chunk_json(chunk, shared_counts, lock, table_name, db_name):
                 session.sql(insert_cmd).execute()
                 session.commit()
                 local_inserted += 1
+
             except Exception:
                 local_skipped += 1
                 continue
@@ -362,6 +419,165 @@ def process_chunk_json(chunk, shared_counts, lock, table_name, db_name):
 
     finally:
         session.close()
+
+def print_row_count(db_name, table_name):
+    while True:
+        time.sleep(10)  # Print row count every 10 seconds
+        session, _ = create_session(db_name)
+        try:
+            result = session.sql(f"SELECT COUNT(*) FROM {table_name}").execute()
+            row_count = result.fetch_one()[0]
+            print(f"Total rows in {table_name}: {row_count}")
+        except Exception as e:
+            print(f"Error fetching row count: {str(e)}")
+        finally:
+            session.close()
+
+def convert_to_mysql_date(iso_datetime):
+    """
+    Convert ISO 8601 datetime (e.g., '2018-05-30T01:01:19Z') to MySQL DATE format ('2018-05-30').
+    """
+    try:
+        # Parse the ISO 8601 datetime string
+        dt = datetime.strptime(iso_datetime, "%Y-%m-%dT%H:%M:%SZ")
+        # Return in MySQL-compatible DATE format
+        return dt.strftime("%Y-%m-%d")
+    except Exception as e:
+        print(f"Error converting datetime value: {iso_datetime} - {str(e)}")
+        return None
+
+def extract_owner_repo(github_url):
+    """
+    Extract owner and repository name from the GitHub URL.
+    helper function for populate_table_github_api
+    """
+    regex = r"github\.com\/([^\/]+)\/([^\/]+)"
+    match = re.search(regex, github_url)
+    if match:
+        return match.groups()
+    return None
+
+def get_contributors(owner, repo):
+    """
+    Fetch contributors from the GitHub repository.
+    helper function for populate_table_github_api
+    """
+    contributors_url = f"https://api.github.com/repos/{owner}/{repo}/contributors"
+
+    # Get GitHub token from environment variable
+    try:
+        headers = {}
+        if GITHUB_TOKEN:
+            headers['Authorization'] = f'token {GITHUB_TOKEN}'
+        else:
+            print(f"Warning: No GitHub token found. Rate limits will be strict.")
+
+        response = requests.get(contributors_url, headers=headers)
+
+        # Check rate limits from response headers
+        rate_limit = response.headers.get('X-RateLimit-Remaining', 'N/A')
+        rate_reset = response.headers.get('X-RateLimit-Reset', 'N/A')
+        if rate_reset != 'N/A':
+            reset_time = datetime.fromtimestamp(int(rate_reset)).strftime('%Y-%m-%d %H:%M:%S')
+        else:
+            reset_time = 'N/A'
+
+        if response.status_code == 403:
+            if rate_limit == '0':
+                print(f"\nGitHub API rate limit exceeded!")
+                print(f"Rate limit will reset at: {reset_time}")
+            else:
+                print(f"\nRepository {owner}/{repo} access forbidden (403)")
+                print(f"This might be a private repository or the token might not have sufficient permissions")
+            return None
+        elif response.status_code == 404:
+            print(f"\nRepository {owner}/{repo} not found (404)")
+            print(f"The repository might have been deleted or renamed")
+            return None
+        elif response.status_code == 200:
+            contributors = [contributor['login'] for contributor in response.json()]
+            if not contributors:
+                print(f"\nNo contributors found for {owner}/{repo}")
+                return None
+            return ', '.join(contributors)
+        else:
+            print(f"\nError fetching contributors for {owner}/{repo}")
+            print(f"Status code: {response.status_code}")
+            print(f"Remaining API calls: {rate_limit}")
+            print(f"Rate limit resets at: {reset_time}")
+            return None
+
+    except requests.exceptions.RequestException as e:
+        print(f"\nNetwork error fetching contributors for {owner}/{repo}")
+        print(f"Error: {str(e)}")
+        return None
+    except Exception as e:
+        print(f"\nUnexpected error fetching contributors for {owner}/{repo}")
+        print(f"Error: {str(e)}")
+        return None
+
+def get_last_commit_date(owner, repo, file_path):
+    """
+    Fetch the last commit date for a specific file in a GitHub repository.
+    """
+    try:
+        for branch in ['main', 'master']:
+            commits_url = f"https://api.github.com/repos/{owner}/{repo}/commits?path={file_path}&sha={branch}&per_page=1"
+            response = requests.get(commits_url, headers={'Authorization': f'token {GITHUB_TOKEN}'})
+            if response.status_code == 200:
+                commit_data = response.json()
+                if commit_data:
+                    return convert_to_mysql_date(commit_data[0].get('commit', {}).get('author', {}).get('date', None))
+        return None  # No valid commit date found
+    except Exception as e:
+        print(f"Error fetching last commit date for {file_path} in {owner}/{repo}: {str(e)}")
+        return None
+
+def get_file_content(file_url):
+    """
+    Fetch the content of a file from the given URL.
+    Prioritize raw user content; fallback to alternative paths if raw URL fails.
+    """
+    try:
+        # Convert GitHub blob URL to raw URL if necessary
+        raw_file_url = (
+            file_url.replace('github.com', 'raw.githubusercontent.com')
+                    .replace('/blob/', '/')
+            if 'github.com' in file_url and '/blob/' in file_url
+            else file_url
+        )
+
+        # Attempt to fetch raw file content
+        response = requests.get(raw_file_url)
+        if response.status_code == 200:
+            return response.text
+
+        # If raw URL fails, fallback to the original blob URL
+        response = requests.get(file_url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            code_element = soup.find('table', {'class': 'highlight'}) or soup.find('pre')
+            if code_element:
+                return code_element.get_text()
+
+        # If all attempts fail, try common alternative branches for raw content
+        if 'github.com' in file_url:
+            parts = file_url.split('github.com/')[1].split('/')
+            owner, repo = parts[0], parts[1]
+            req_files = ['requirements.txt']
+            branches = ['main', 'master']
+
+            for branch in branches:
+                for req_file in req_files:
+                    alt_raw_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{req_file}"
+                    alt_response = requests.get(alt_raw_url)
+                    if alt_response.status_code == 200:
+                        return alt_response.text
+        return None
+
+    except Exception as e:
+        print(f"Error fetching file content from {file_url}: {str(e)}")
+        return None
 
 
 class Table:
@@ -553,6 +769,7 @@ class Table:
 
     @timeit
     def populate_table_from_papers_and_code_json_parallel(self, row_limit: int = None) -> bool:
+        print("Attempting to popualte table from JSON file in parallel mode...")
         file_loc = os.path.join(ROOT, "data", "links-between-papers-and-code.json")
         try:
             with open(file_loc, 'r', encoding='ascii') as f:
@@ -596,153 +813,6 @@ class Table:
 
         return True
 
-    def convert_to_mysql_date(self, iso_datetime):
-        """
-        Convert ISO 8601 datetime (e.g., '2018-05-30T01:01:19Z') to MySQL DATE format ('2018-05-30').
-        """
-        try:
-            # Parse the ISO 8601 datetime string
-            dt = datetime.strptime(iso_datetime, "%Y-%m-%dT%H:%M:%SZ")
-            # Return in MySQL-compatible DATE format
-            return dt.strftime("%Y-%m-%d")
-        except Exception as e:
-            print(f"Error converting datetime value: {iso_datetime} - {str(e)}")
-            return None
-
-    def extract_owner_repo(self, github_url):
-        """
-        Extract owner and repository name from the GitHub URL.
-        helper function for populate_table_github_api
-        """
-        regex = r"github\.com\/([^\/]+)\/([^\/]+)"
-        match = re.search(regex, github_url)
-        if match:
-            return match.groups()
-        return None
-
-    def get_contributors(self, owner, repo):
-        """
-        Fetch contributors from the GitHub repository.
-        helper function for populate_table_github_api
-        """
-        contributors_url = f"https://api.github.com/repos/{owner}/{repo}/contributors"
-
-        # Get GitHub token from environment variable
-        try:
-            headers = {}
-            if GITHUB_TOKEN:
-                headers['Authorization'] = f'token {GITHUB_TOKEN}'
-            else:
-                print(f"Warning: No GitHub token found. Rate limits will be strict.")
-
-            response = requests.get(contributors_url, headers=headers)
-
-            # Check rate limits from response headers
-            rate_limit = response.headers.get('X-RateLimit-Remaining', 'N/A')
-            rate_reset = response.headers.get('X-RateLimit-Reset', 'N/A')
-            if rate_reset != 'N/A':
-                reset_time = datetime.fromtimestamp(int(rate_reset)).strftime('%Y-%m-%d %H:%M:%S')
-            else:
-                reset_time = 'N/A'
-
-            if response.status_code == 403:
-                if rate_limit == '0':
-                    print(f"\nGitHub API rate limit exceeded!")
-                    print(f"Rate limit will reset at: {reset_time}")
-                else:
-                    print(f"\nRepository {owner}/{repo} access forbidden (403)")
-                    print(f"This might be a private repository or the token might not have sufficient permissions")
-                return None
-            elif response.status_code == 404:
-                print(f"\nRepository {owner}/{repo} not found (404)")
-                print(f"The repository might have been deleted or renamed")
-                return None
-            elif response.status_code == 200:
-                contributors = [contributor['login'] for contributor in response.json()]
-                if not contributors:
-                    print(f"\nNo contributors found for {owner}/{repo}")
-                    return None
-                return ', '.join(contributors)
-            else:
-                print(f"\nError fetching contributors for {owner}/{repo}")
-                print(f"Status code: {response.status_code}")
-                print(f"Remaining API calls: {rate_limit}")
-                print(f"Rate limit resets at: {reset_time}")
-                return None
-
-        except requests.exceptions.RequestException as e:
-            print(f"\nNetwork error fetching contributors for {owner}/{repo}")
-            print(f"Error: {str(e)}")
-            return None
-        except Exception as e:
-            print(f"\nUnexpected error fetching contributors for {owner}/{repo}")
-            print(f"Error: {str(e)}")
-            return None
-
-    def get_file_content(self, file_url):
-        """
-        Fetch the content of a file from the given URL.
-        Prioritize raw user content; fallback to alternative paths if raw URL fails.
-        """
-        try:
-            # Convert GitHub blob URL to raw URL if necessary
-            raw_file_url = (
-                file_url.replace('github.com', 'raw.githubusercontent.com')
-                        .replace('/blob/', '/')
-                if 'github.com' in file_url and '/blob/' in file_url
-                else file_url
-            )
-
-            # Attempt to fetch raw file content
-            response = requests.get(raw_file_url)
-            if response.status_code == 200:
-                return response.text
-
-            # If raw URL fails, fallback to the original blob URL
-            response = requests.get(file_url)
-            if response.status_code == 200:
-                soup = BeautifulSoup(response.text, 'html.parser')
-                code_element = soup.find('table', {'class': 'highlight'}) or soup.find('pre')
-                if code_element:
-                    return code_element.get_text()
-
-            # If all attempts fail, try common alternative branches for raw content
-            if 'github.com' in file_url:
-                parts = file_url.split('github.com/')[1].split('/')
-                owner, repo = parts[0], parts[1]
-                req_files = ['requirements.txt']
-                branches = ['main', 'master']
-
-                for branch in branches:
-                    for req_file in req_files:
-                        alt_raw_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{req_file}"
-                        alt_response = requests.get(alt_raw_url)
-                        if alt_response.status_code == 200:
-                            return alt_response.text
-
-            return None
-
-        except Exception as e:
-            print(f"Error fetching file content from {file_url}: {str(e)}")
-            return None
-
-    def get_last_commit_date(self, owner, repo, file_path):
-        """
-        Fetch the last commit date for a specific file in a GitHub repository.
-        """
-        try:
-            for branch in ['main', 'master']:
-                commits_url = f"https://api.github.com/repos/{owner}/{repo}/commits?path={file_path}&sha={branch}&per_page=1"
-                response = requests.get(commits_url, headers={'Authorization': f'token {GITHUB_TOKEN}'})
-                if response.status_code == 200:
-                    commit_data = response.json()
-                    if commit_data:
-                        return self.convert_to_mysql_date(commit_data[0].get('commit', {}).get('author', {}).get('date', None))
-            return None  # No valid commit date found
-        except Exception as e:
-            print(f"Error fetching last commit date for {file_path} in {owner}/{repo}: {str(e)}")
-            return None
-
     @timeit
     def populate_table_from_github_repo_sequential(self, row_limit: int = None) -> bool:
         """
@@ -775,7 +845,7 @@ class Table:
                 paper_title = row[1]  # Now correctly points to paper_title
 
                 if github_url:
-                    owner_repo = self.extract_owner_repo(github_url)
+                    owner_repo = extract_owner_repo(github_url)
                     if owner_repo:
                         owner, repo = owner_repo
 
@@ -823,7 +893,7 @@ class Table:
                                 )
 
                             # Get contributors
-                            contributors = self.get_contributors(owner, repo)
+                            contributors = get_contributors(owner, repo)
                             if contributors and len(contributors) > 255:
                                 contributors = contributors[:252] + '...'
 
@@ -876,17 +946,9 @@ if __name__ == '__main__':
     row_limit_view = 10
 
     # make sure mysql is installed and running
-    if not is_mysql_installed():
-        print("MySQL is not installed. Please run database/mysql_setup.sh to install MySQL.")
-        sys.exit(1)
-
-    print("Ensuring MySQL server is running...")
-    if not spinup_mysql_server():
-        print("Failed to start MySQL server. Check system logs")
-        sys.exit(1)
-
-    show_databases()
+    initialize_mysql()
     create_db(db_name=DATABASE_NAME) # do once
+    show_databases()
     show_all_tables(db_name=DATABASE_NAME)
     drop_all_tables(db_name=DATABASE_NAME) # for testing
 
@@ -898,9 +960,9 @@ if __name__ == '__main__':
     # PUBLISH   git fork, git clone, git push, git pull request, tweet
     # # import function into another file to do the cell updates...
 
-    papers_and_code = Table(table_name="papers_and_code", db_name=DATABASE_NAME)
+    papers_and_code = Table(table_name=TABLE_NAME, db_name=DATABASE_NAME)
     papers_and_code.create_table_full()
-    show_table_columns("papers_and_code", db_name=DATABASE_NAME)
+    show_table_columns(table_name=TABLE_NAME, db_name=DATABASE_NAME)
     # 185,000 new rows of 272,000 possible \/
     # sequential took 158 seconds on M3 Max MBP with 14 cores, 96GB RAM
     # sequential took 459 seconds on 2x Xeon E5-2699 v4 server with 44 cores, 256GB RAM
@@ -908,7 +970,7 @@ if __name__ == '__main__':
     # parallel took 23 seconds on M3 Max MBP with 14 cores, 96GB RAM
     # parallel took 40 seconds on 2x Xeon E5-2699 v4 server with 44 cores, 256GB RAM
     papers_and_code.populate_table_from_papers_and_code_json_parallel()
-    show_table_contents("papers_and_code", db_name=DATABASE_NAME, limit_num=row_limit_view)
+    show_table_contents(table_name=TABLE_NAME, db_name=DATABASE_NAME, limit_num=row_limit_view)
 
     # given the 5000 github api call limit per hour, row limit is set here
     # 1000 insertions
@@ -916,7 +978,7 @@ if __name__ == '__main__':
     # took 920 seconds on 2x Xeon E5-2699 v4 server
     papers_and_code.populate_table_from_github_repo_sequential(row_limit=row_limit_parse)
     # TODO: parallelize github fetching code
-    show_table_contents("papers_and_code", db_name=DATABASE_NAME, limit_num=row_limit_view)
+    show_table_contents(table_name=TABLE_NAME, db_name=DATABASE_NAME, limit_num=row_limit_view)
 
     # build, fix, publish columns not filled in with this script (yet)
 

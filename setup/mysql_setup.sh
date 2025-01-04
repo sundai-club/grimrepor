@@ -1,9 +1,26 @@
-#!/bin/bash
+setup/mysql_setup.sh#!/bin/bash
 
 set -e
-
 echo
-# Check OS type
+
+# git large file system installation
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "Installing Git LFS for Linux..."
+    sudo apt-get update
+    sudo apt-get install git-lfs
+    git lfs install
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Installing Git LFS for macOS..."
+    brew update
+    brew install git-lfs
+    git lfs install
+else
+    echo "Unsupported operating system"
+    exit 1
+fi
+# Pull LFS files after installation
+git lfs pull
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
     if ! command -v mysql &> /dev/null; then
@@ -26,7 +43,12 @@ fi
 ROOT=$(dirname $(dirname $(realpath $0)))
 
 # Load environment variables
-source "$ROOT"/.env
+if [ ! -f "$ROOT/.env" ]; then
+    echo ".env file not found at $ROOT/.env"
+    exit 1
+else
+    . "$ROOT"/.env
+fi
 
 # Check if MySQL is running
 if ! mysqladmin ping &> /dev/null; then
@@ -53,25 +75,6 @@ ALTER USER '$MYSQL_USER'@'$MYSQL_HOST' IDENTIFIED WITH mysql_native_password BY 
 FLUSH PRIVILEGES;
 EOF
 fi
-
-# git large file system installation
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "Installing Git LFS for Linux..."
-    sudo apt-get update
-    sudo apt-get install git-lfs
-    git lfs install
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Installing Git LFS for macOS..."
-    brew update
-    brew install git-lfs
-    git lfs install
-else
-    echo "Unsupported operating system"
-    exit 1
-fi
-# Pull LFS files after installation
-git lfs pull
-
 
 echo; echo
 echo "MySQL setup complete."
